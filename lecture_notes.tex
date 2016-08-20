@@ -477,7 +477,8 @@ Note that $\vec{r}_{\vec{n}}$ is an involution: $\vec{r}_{\vec{n}}(\vec{r}_{\vec
 
 \subsection{Applications (2)}
 	\subsubsection{Approaching or Separating Objects}
-	Given two objects, $A$, $B$, with positions, $p_A$, $p_B$, and velocities $v_A$, $v_B$, how do you determine if the two objects are approaching or separating from each other? Note that $p_B - p_A$ is the relative position of $B$ with respect to $A$
+	Given two objects, $A$, $B$, with positions, $p_A$, $p_B$, and velocities $v_A$, $v_B$, how do you determine if the two objects are approaching or separating from each other?
+	Note that $p_B - p_A$ is the relative position of $B$ with respect to $A$ (i.e. where $B$ is if $A$ is the origin) and $v_B - v_A$ is the relative velocity of $B$ with respect to $A$ (i.e. where $B$ is moving from the point of view of $A$)
 	$$
 	(p_B - p_A) \cdot (v_B - v_A) = 
 	\begin{cases}
@@ -487,9 +488,28 @@ Note that $\vec{r}_{\vec{n}}$ is an involution: $\vec{r}_{\vec{n}}(\vec{r}_{\vec
 	\end{cases}
 	$$
 	\subsubsection{Line Orientation}
+	\begin{tikzpicture}
+		\draw(0,0)--(2,1);
+		\draw (0,0) node[below] {$A$};
+		\draw (2,1) node[above] {$B$};
+		
+		\filldraw(1.2,1) circle[radius=0.05] node[above] {$C$};
+	\end{tikzpicture}
+	
+	If we have a line going from $A$ to $B$ in 2D, given point $C$ (a cow), how do we determine if $C$ is at the left, or right of line $\overline{AB}$?
+	$$
+	(B - A) \times (C - A) = \begin{cases}
+	> 0 & \text{left}\\
+	< 0 & \text{right}\\
+	= 0 & \text{along}
+	\end{cases}
+	$$
 	\subsubsection{Point Detection}
+	TODO
 	\subsubsection{Area Computation}
+	TODO
 	\subsubsection{Convex Detection}
+	TODO
 \section{Exercises}
 
 \chapter{Lines and Polygons}
