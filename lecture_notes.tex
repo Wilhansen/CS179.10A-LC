@@ -20,6 +20,7 @@
 
 \DeclareMathOperator{\atan}{atan2}
 \DeclareMathOperator{\acos}{acos}
+\providecommand{\proj}[2]{\operatorname{proj}_{#1}\left(#2\right)}
 
 \newcommand\pgfmathsinandcos[3]{%
   \pgfmathsetmacro#1{sin(#3)}%
@@ -155,7 +156,7 @@ Unlike in 2D, there's more than one way to map to cylindrical coordinates, depen
 
 The cylinder is on the z-axis:
 \tdplotsetmaincoords{70}{120}
-\begin{figure}[!ht]
+\begin{figure}[!h]
 \centering
 \begin{tikzpicture}[tdplot_main_coords,scale=5]
     \draw[thick,->] (0,0,0) -- (1,0,0) node[anchor=north east]{$x$};
@@ -383,11 +384,112 @@ $$u \times (v \times w) = v(u \cdot w) - w(u \cdot v)$$
 	$$
 	
 	\subsubsection{Volume of a Parallelepiped}
-	TODO
+    	\begin{tikzpicture}[tdplot_main_coords,scale=5]
+	    \coordinate (U) at (0.1, 0.2, 0.3);
+	    \coordinate (V) at (-0.1, 0.4, 0.2);
+	    \coordinate (W) at (0, 0.4, -0.1);
+	    
+	    \draw[thick,->] (0,0,0) -- (0.2,0,0) node[anchor=north east]{$x$};
+	    \draw[thick,->] (0,0,0) -- (0,0.2,0) node[anchor=north west]{$y$};
+	    \draw[thick,->] (0,0,0) -- (0,0,0.2) node[anchor=south]{$z$};
+	    \draw[->](0,0,0) -- (U)  node[anchor=north east]{$u$};
+	    \draw[->, dashed](0,0,0) -- (V)  node[anchor=north east]{$v$};
+	    \draw[->](0,0,0) -- (W)  node[anchor=north east]{$w$};
+	    
+	    \draw[-](U) -- ++(V) -- ++(W);
+	    \draw[-](U) -- ++(W) -- ++(V);
+	    
+	    \draw[dashed](V) -- ++(W);
+	    \draw[dashed](V) -- +(U);
+	    \draw ($(V)+(W)$) -- +(U);
+	    
+	    \draw[-](W)  -- +(V);
+	    \draw[-](W)  -- +(U);
+	\end{tikzpicture}
+	Area = $|u \cdot (v \times w)|$
 \subsection{Projection}
+	\begin{center}
+	\begin{tikzpicture}
+		\draw[->] (0,0) -- node[below] {$\vec{u}$} (1.0, 0);
+		\draw[->] (0,0) -- node[above, sloped] {$\vec{v}$} (3, 2);
+		\draw (0, -0.7) -- (0, -0.9);
+		\draw (0, -0.8) -- node[below] {$|\vec{v}|\cos\theta$} (3, -0.8);
+		\draw (3, -0.7) -- (3, -0.9);
+		\draw[color=red, dotted, thick] (0,0) --  (3, 0);
+		\draw[color=green, dotted, thick] (3,2) --  (3, 0);
+	\end{tikzpicture}
+	\end{center}
+	How do we get a vector with the same direction as $\vec{u}$ but with the magnitude of $|\vec{v}|\cos\theta$?
+	
+	If we assume $|\vec{u}| = 1$, and let
+	$$
+	\vec{w} = (\vec{u} \cdot \vec{v})\vec{u} = (|\vec{v}|\cos\theta)\vec{u}
+	$$
+	\begin{center}
+	\begin{tikzpicture}
+		\draw[->] (0,0) -- node[below] {$\vec{u}$} (1.0, 0);
+		\draw[->] (0,0) -- node[above, sloped] {$\vec{v}$} (3, 2);
+		\draw[->] (0, -0.8) -- node[below] {$\vec{w}$} (3, -0.8);
+		\draw[color=red, dotted, thick] (0,0) --  (3, 0);
+		\draw[color=green, dotted, thick] (3,2) --  (3, 0);
+	\end{tikzpicture}
+	\end{center}
+	This is what we call ``projection''.
+	
+	What if $|\vec{u}| \neq 1$? Consider the normalized vector $\hat{u}$.
+	$$
+		\hat{u} = \|\vec{u}\| = \frac{\vec{u}}{|\vec{u}|}
+	$$
+	So we can get the same resultant vector by computing $(\hat{u}\cdot\vec{v})\vec{u_N}$. Expanding this:
+	\begin{align*}
+		(\hat{u}\cdot\vec{v})\hat{u} &= \left(\frac{\vec{u}}{|\vec{u}|}\cdot\vec{v}\right)\frac{\vec{u}}{|\vec{u}|}\\
+		&= \frac{\vec{u}\cdot\vec{v}}{|\vec{u}|^2}\vec{u}\\
+		&= \frac{\vec{u}\cdot\vec{v}}{\vec{u}\cdot\vec{u}}\vec{u}
+	\end{align*}
+	
+
+		Let $\vec{u}, \vec{v} \in \mathbb{R}^n$ with $\vec{u} \neq 0$, the projection of vector $\vec{v}$ into $\vec{u}$ defined as:
+		$$
+		\proj{\vec{u}}{\vec{v}} = \frac{\vec{u}\cdot\vec{v}}{\vec{u}\cdot\vec{u}}\vec{u}
+		$$
+
+
+	If $|\vec{u}| = 1$ then the function simplifies to
+	$$
+		\proj{\vec{u}}{\vec{v}} = (\vec{u}\cdot\vec{v})\vec{u}
+	$$
+
+	
 \subsection{Reflection}
+	\begin{center}
+		\begin{tikzpicture}[>=stealth]
+			\draw[->,thick] (-2,1.5) -- node[below] {$\vec{i}$} (0,0);
+			\draw[->,thick] (0,0) -- node[right] {$\vec{n}$} (0,.8);
+			\draw[->,thick] (0,0) -- node[below] {$\vec{r}$} (2,1.5);
+			\draw (-3,0) -- (3,0);
+		\end{tikzpicture}
+	\end{center}
+The reflection of an incident vector $\vec{i}$, hitting a plane with normal $\vec{n}$ is:
+	$$
+		\vec{r}_{\vec{n}}(\vec{i}) = \vec{i} - 2\proj{\vec{n}}{\vec{i}}
+	$$
+Note that $\vec{r}_{\vec{n}}$ is an involution: $\vec{r}_{\vec{n}}(\vec{r}_{\vec{n}}(\vec{i})) = \vec{i}$
+
 \subsection{Applications (2)}
+	\subsubsection{Approaching or Separating Objects}
+	Given two objects, $A$, $B$, with positions, $p_A$, $p_B$, and velocities $v_A$, $v_B$, how do you determine if the two objects are approaching or separating from each other? Note that $p_B - p_A$ is the relative position of $B$ with respect to $A$
+	$$
+	(p_B - p_A) \cdot (v_B - v_A) = 
+	\begin{cases}
+	> 0 & \text{separating} \\
+	< 0 & \text{approaching} \\
+	= 0 & \text{neither}
+	\end{cases}
+	$$
 	\subsubsection{Line Orientation}
+	\subsubsection{Point Detection}
+	\subsubsection{Area Computation}
+	\subsubsection{Convex Detection}
 \section{Exercises}
 
 \chapter{Lines and Polygons}
