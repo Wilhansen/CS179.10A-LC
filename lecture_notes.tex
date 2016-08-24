@@ -5,7 +5,7 @@
 \usepackage{geometry}                % See geometry.pdf to learn the layout options. There are lots.
 \geometry{a4paper}                   
 %\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
-\usepackage{graphicx}
+\usepackage{graphicx, url}
 \usepackage{amssymb, amsmath,url,gensymb}
 \usepackage[compact]{titlesec}
 \usepackage{fontspec,xltxtra,xunicode,ifthen}
@@ -505,14 +505,55 @@ Note that $\vec{r}_{\vec{n}}$ is an involution: $\vec{r}_{\vec{n}}(\vec{r}_{\vec
 	\end{cases}
 	$$
 	\subsubsection{Point Detection}
-	TODO
+	Given a simple convex polygon with points $p_1, p_2, \dots, p_n$, how do you check if a point $p_c$ is inside, or outside the polygon? The key here is that if you imagine that you're walking along a convex polygon, the point is inside the polygon if and only if it's always on the same side (e.g. it's either always at your left, or always at your right).
+	
+	So to do that we check if $(p_{i+1} - p_i) \times (p_c - p_i)$ has the same sign for all $i \in [1,n]$ with $p_{n + 1} = p_1$. Note that if there's a $0$, it could mean that the point is along one of the lines extended by the edge. So they could be ignored if we're just concerned with detecting if the point is outside, or factored in if we want to distinguish between the point being IN the polygon or it being ON the edge of the polygon.
+	
 	\subsubsection{Area Computation}
 	TODO
 	\subsubsection{Convex Detection}
 	TODO
+	\subsubsection{Backface Culling}
+	TODO
+	\subsubsection{2D Cone Test}
+	Suppose we have a game where we need to check if a target $t$ falls within a certain distance $r$ from the player $p$ and field of view $\theta$ from where the player is facing $\hat{f}$ as shown below:
+	\begin{center}
+	\begin{tikzpicture}
+	\draw (0,0) circle[radius=2];
+	\filldraw (0,0) circle[radius=0.05] node[above] {$p$};
+	
+	\pgfmathsinandcos\sx\cx{30}
+	    
+	\filldraw[color=blue!30] (0,0) -- (2 * \cx, 2 * \sx) arc[start angle=30,end angle=-30, radius=2] -- (2 * \cx, -2 * \sx);
+	\draw[->,thick] (0,0) -- node[below] {$\hat{f}$} (1, 0);
+	\draw[-] (0,0) -- node[left] {$r$} (0, -2);
+	\draw (1,0) arc [start angle=0, end angle=30, radius=1] node[right]{$\theta$};
+		
+	\end{tikzpicture}
+	\end{center}
+	To check if the target is inside the circle, simply check for $|t - p|^2 \leq r^2$, to check whether it's within the field of view:
+	\begin{align}
+	\frac{(t - p) \cdot \hat{f}}{|t - p|} = \begin{cases}
+	< \cos\theta & \text{outside}\\
+	\geq \cos\theta & \text{inside} \\
+	\end{cases}
+	\end{align}
+\subsection{Barycentric Coordinates}
 \section{Exercises}
-
+	\begin{enumerate}
+		\item Closest Point of Approach: Two objects, $A$, $B$, starting at $p_A$, $p_B$, are moving with velocities $v_A$, $v_B$ units per second respectively. At what time $t_0$, after they start moving, will they be closest to each other?
+		\item Stacking Cylinders: See \url{http://acmgnyr.org/year2005/f.pdf}
+		\item Given triangle in 3D with points $A$, $B$, and $C$, and $u = \frac{(B - A)\times (C - A)}{2}$, show that the signed area of triangle when projected to the $xy$, $yz$, and $zx$ planes are $u.z$, $u.x$, and $u.y$ respectively.
+		\item Texturing
+	\end{enumerate}
 \chapter{Lines and Polygons}
+	\section{2D Line Representations}
+	\section{3D Line Representations}
+	\section{3D Plane Representations}
+	\section{Exercises}
+		\begin{enumerate}
+			\item Projection to Plane: Given $\triangle ABC$, and a plane intersecting the origin with normal $n$, find the 
+		\end{enumerate}
 \chapter{Bounding Regions}
 \chapter{Spatial Data Structures}
 \chapter{Voronoi Regions and Delunay Triangulation}
