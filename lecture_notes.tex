@@ -31,601 +31,601 @@
 	\author{Wilhansen Li}
 	
 	\begin{document}
-	\maketitle
-	\tableofcontents
+\maketitle
+\tableofcontents
 	
-	\chapter{Vector Math}
-	\section{Trigonometry Review}
-	\subsection{Radians}
-	\begin{align*}
-	\text{toRad}(\theta) &= \theta \frac{\pi}{180\degree} \\
-	\text{toDeg}(\psi) &= \psi\frac{180\degree}{\pi}
-	\end{align*}
-	To compute the arc length of a circle with radius $r$ at angle $\theta$:
-	$$
-	2\pi r \left(\frac{\theta}{2\pi}\right) = r\theta
-	$$
-	give that $\theta$ is in radians.
-	\subsection{Trigonometric Functions}
-	\begin{center}
+\chapter{Vector Math}
+\section{Trigonometry Review}
+\subsection{Radians}
+\begin{align*}
+	\text{toRad}(\theta) & = \theta \frac{\pi}{180\degree} \\
+	\text{toDeg}(\psi)   & = \psi\frac{180\degree}{\pi}    
+\end{align*}
+To compute the arc length of a circle with radius $r$ at angle $\theta$:
+$$
+2\pi r \left(\frac{\theta}{2\pi}\right) = r\theta
+$$
+give that $\theta$ is in radians.
+\subsection{Trigonometric Functions}
+\begin{center}
 	\begin{tikzpicture}
 		[scale=3,line cap=round,
-		% Styles
-		axes/.style=,
-		important line/.style={very thick},
+			% Styles
+			axes/.style=,
+			important line/.style={very thick},
 		information text/.style={rounded corners,fill=red!10,inner sep=1ex}]
-	% Colors
+		% Colors
 		\colorlet{anglecolor}{green!50!black}
 		\colorlet{sincolor}{red}
 		\colorlet{tancolor}{orange!80!black}
 		\colorlet{coscolor}{blue}
-	% The graphic
+		% The graphic
 		\draw[help lines,step=0.5cm] (-1.4,-1.4) grid (1.4,1.4);
 		\draw (0,0) circle [radius=1cm];
 		\begin{scope}[axes]
 			\draw[->] (-1.5,0) -- (1.5,0) node[right] {$x$} coordinate(x axis);
 			\draw[->] (0,-1.5) -- (0,1.5) node[above] {$y$} coordinate(y axis);
 			\foreach \x/\xtext in {-1, -.5/-\frac{1}{2}, 1}
-				\draw[xshift=\x cm] (0pt,1pt) -- (0pt,-1pt) node[below,fill=white] {$\xtext$};
+			\draw[xshift=\x cm] (0pt,1pt) -- (0pt,-1pt) node[below,fill=white] {$\xtext$};
 			\foreach \y/\ytext in {-1, -.5/-\frac{1}{2}, .5/\frac{1}{2}, 1}
-				\draw[yshift=\y cm] (1pt,0pt) -- (-1pt,0pt) node[left,fill=white] {$\ytext$};
+			\draw[yshift=\y cm] (1pt,0pt) -- (-1pt,0pt) node[left,fill=white] {$\ytext$};
 		\end{scope}
 		\filldraw[fill=green!20,draw=anglecolor] (0,0) -- (3mm,0pt) arc [start angle=0, end angle=30, radius=3mm];
 		\draw (15:2mm) node[anglecolor] {$\alpha$};
-	        \draw[important line,sincolor]
-			(30:1cm) -- node[left=1pt,fill=white] {$\sin \alpha$} (30:1cm |- x axis); \draw[important line,coscolor]
-			(30:1cm |- x axis) -- node[below=2pt,fill=white] {$\cos \alpha$} (0,0);
-	        \path [name path=upward line] (1,0) -- (1,1);
-	        \path [name path=sloped line] (0,0) -- (30:1.5cm);
-	        \draw [name intersections={of=upward line and sloped line, by=t}]
-	        [very thick,orange] (1,0) -- node [right=1pt,fill=white] {$\displaystyle \tan \alpha \color{black}=
-	        \frac{{\color{red}\sin \alpha}}{\color{blue}\cos \alpha}$} (t);
-	        \draw (0,0) -- (t);
-	%        \draw[xshift=1.85cm]
-	%        node[right,text width=6cm,information text] {
-	%        The {\color{anglecolor} angle $\alpha$} is $30^\circ$ in the
-	%        example ($\pi/6$ in radians). The {\color{sincolor}sine of
-	%        $\alpha$}, which is the height of the red line, is
-	%        \[
-	%        {\color{sincolor} \sin \alpha} = 1/2. \]
-	%        By the Theorem of Pythagoras ...
-	%        };
+		\draw[important line,sincolor]
+		(30:1cm) -- node[left=1pt,fill=white] {$\sin \alpha$} (30:1cm |- x axis); \draw[important line,coscolor]
+		(30:1cm |- x axis) -- node[below=2pt,fill=white] {$\cos \alpha$} (0,0);
+		\path [name path=upward line] (1,0) -- (1,1);
+		\path [name path=sloped line] (0,0) -- (30:1.5cm);
+		\draw [name intersections={of=upward line and sloped line, by=t}]
+		[very thick,orange] (1,0) -- node [right=1pt,fill=white] {$\displaystyle \tan \alpha \color{black}=
+			\frac{{\color{red}\sin \alpha}}{\color{blue}\cos \alpha}$} (t);
+		\draw (0,0) -- (t);
+		%        \draw[xshift=1.85cm]
+		%        node[right,text width=6cm,information text] {
+		%        The {\color{anglecolor} angle $\alpha$} is $30^\circ$ in the
+		%        example ($\pi/6$ in radians). The {\color{sincolor}sine of
+		%        $\alpha$}, which is the height of the red line, is
+		%        \[
+		%        {\color{sincolor} \sin \alpha} = 1/2. \]
+		%        By the Theorem of Pythagoras ...
+		%        };
 	\end{tikzpicture}
-	\end{center}
+\end{center}
 	
-	\subsection{Trigonometric Identities}
+\subsection{Trigonometric Identities}
 	
-	We have the following basic identities:
-	\begin{align*}
+We have the following basic identities:
+\begin{align*}
 	\tan(\theta) = \frac{\sin(\theta)}{\cos(\theta)} = \frac{y}{x} = slope \\
-	\sin^2(\theta) + \cos^2(\theta) = 1
-	\end{align*}
-	Angle addition identities:
-	\begin{align*}
+	\sin^2(\theta) + \cos^2(\theta) = 1                                    
+\end{align*}
+Angle addition identities:
+\begin{align*}
 	\sin(\alpha + \beta) = \sin(\alpha)\cos (\beta) + \cos(\alpha)\sin(\beta) \\
-	\cos(\alpha + \beta) = \cos(\alpha)\cos (\beta) - \sin(\alpha)\sin(\beta)
-	\end{align*}
-	Double angle identities:
-	\begin{align*}
-	\sin(2\alpha) &= 2\sin(\alpha)\cos (\alpha) \\
-	\cos(2\alpha) &= \cos^2(\alpha)- \sin^2(\alpha)
-	\end{align*}
-	Half angle identity:
-	\begin{align*}
-	\cos\left(\frac{a}{2}\right) = \pm \sqrt{\frac{1 + \cos{a}}{2}}
-	\sin\left(\frac{a}{2}\right) = \pm \sqrt{\frac{1 - \cos{a}}{2}}
-	\end{align*}
-	Law of cosines:
-	\begin{tikzpicture}
-	    \tkzDefPoint(5,2){A}
-	    \tkzDefPoint(0,0){B}
-	    \tkzDefPoint(6.8,0){C}
-	    \tkzDefPoint(5,0){E}
+	\cos(\alpha + \beta) = \cos(\alpha)\cos (\beta) - \sin(\alpha)\sin(\beta) 
+\end{align*}
+Double angle identities:
+\begin{align*}
+	\sin(2\alpha) & = 2\sin(\alpha)\cos (\alpha)     \\
+	\cos(2\alpha) & = \cos^2(\alpha)- \sin^2(\alpha) 
+\end{align*}
+Half angle identity:
+\begin{align*}
+	\cos\left(\frac{a}{2}\right) = \pm \sqrt{\frac{1 + \cos{a}}{2}} 
+	\sin\left(\frac{a}{2}\right) = \pm \sqrt{\frac{1 - \cos{a}}{2}} 
+\end{align*}
+Law of cosines:
+\begin{tikzpicture}
+	\tkzDefPoint(5,2){A}
+	\tkzDefPoint(0,0){B}
+	\tkzDefPoint(6.8,0){C}
+	\tkzDefPoint(5,0){E}
+					
+	% \tkzLabelPoints[above,font=\sansmath\sffamily](A)
+	% \tkzLabelPoints[below left,font=\sansmath\sffamily](B)
+	% \tkzLabelPoints[below right,font=\sansmath\sffamily](C)
+					
+	% Draw polygon
+	\tkzDrawPolygon[fill=gray!10](A,B,C)
+					
+	% Label line segments
+	\tkzLabelSegment[below](B,C){$a$}
+	\tkzLabelSegment[right](A,C){$b$}
+	\tkzLabelSegment[above left](A,B){$c$}
+					
+	% Mark angles
+	\tkzMarkAngle[arc=l,size=0.6cm,fill=green!30](A,C,B)
+	\tkzLabelAngle[pos=0.42](A,C,B){$C$}
+					
+	% Draw polygon
+	\tkzDrawPolygon(A,B,C)
+\end{tikzpicture}
 	
-	    % \tkzLabelPoints[above,font=\sansmath\sffamily](A)
-	    % \tkzLabelPoints[below left,font=\sansmath\sffamily](B)
-	    % \tkzLabelPoints[below right,font=\sansmath\sffamily](C)
+\begin{align*}
+	c^2 = a^2 + b^2 -2ab\cos(C) 
+\end{align*}
+\subsection{Polar Coordinates $\leftrightarrow$ Cartesian Coordinates}
+\begin{align*}
+	\lbrack r, \theta \rbrack & = \langle r\cos\theta, r\sin\theta \rangle      \\
+	\langle x, y \rangle      & = \lbrack \sqrt{x^2 + y^2}, \atan(y, x) \rbrack 
+\end{align*}
 	
-	    % Draw polygon
-	    \tkzDrawPolygon[fill=gray!10](A,B,C)
+\subsubsection{Cylindrical coordinates}
+Unlike in 2D, there's more than one way to map to cylindrical coordinates, depending on where the cylinder is lying:
 	
-	    % Label line segments
-	    \tkzLabelSegment[below](B,C){$a$}
-	    \tkzLabelSegment[right](A,C){$b$}
-	    \tkzLabelSegment[above left](A,B){$c$}
-	
-	    % Mark angles
-	    \tkzMarkAngle[arc=l,size=0.6cm,fill=green!30](A,C,B)
-	    \tkzLabelAngle[pos=0.42](A,C,B){$C$}
-	
-	    % Draw polygon
-	    \tkzDrawPolygon(A,B,C)
-	\end{tikzpicture}
-	
-	\begin{align*}
-	c^2 = a^2 + b^2 -2ab\cos(C)
-	\end{align*}
-	\subsection{Polar Coordinates $\leftrightarrow$ Cartesian Coordinates}
-	\begin{align*}
-	\lbrack r, \theta \rbrack &= \langle r\cos\theta, r\sin\theta \rangle \\
-	\langle x, y \rangle &= \lbrack \sqrt{x^2 + y^2}, \atan(y, x) \rbrack
-	\end{align*}
-	
-	\subsubsection{Cylindrical coordinates}
-	Unlike in 2D, there's more than one way to map to cylindrical coordinates, depending on where the cylinder is lying:
-	
-	The cylinder is on the z-axis:
-	\tdplotsetmaincoords{70}{120}
-	\begin{figure}[!h]
+The cylinder is on the z-axis:
+\tdplotsetmaincoords{70}{120}
+\begin{figure}[!h]
 	\centering
 	\begin{tikzpicture}[tdplot_main_coords,scale=5]
-	    \draw[thick,->] (0,0,0) -- (1,0,0) node[anchor=north east]{$x$};
-	    \draw[thick,->] (0,0,0) -- (0,1,0) node[anchor=north west]{$y$};
-	    \draw[thick,->] (0,0,0) -- (0,0,1) node[anchor=south]{$z$};
-	    
-	    \def\R{0.6}
-	    \def\H{0.7}
-	    \def\pH{0.6}
-	    \pgfmathsinandcos\sx\cx{-30}
-	    
-	    \draw (\R*\sx, \R*\cx, \H) -- (\R*\sx, \R*\cx, 0);
-	    \draw (-\R*\sx, -\R*\cx, \H) -- (-\R*\sx, -\R*\cx, 0);
-	    \draw (0, 0, \H) circle [radius=\R];
-	    \draw (0, 0, 0) circle [radius=\R];
-	    
-	    \def\azi{60}
-	    \pgfmathsetmacro{\elev}{atan(\pH/\R)}
-	    \pgfmathsinandcos\sp\cp{\azi}
-	    
-	    %\draw[->] (0,0,0) -- (\R*\cp, \R*\sp, \pH);
-	    \draw[->] (0,0,0) -- (\R*\cp, \R*\sp, 0) node [right, midway] {$r$};
-	    \draw plot [mark=*, mark size=0.6] coordinates{(\R*\cp, \R*\sp, \pH)};
-	    \draw (\R*\cp, \R*\sp, 0) -- (\R*\cp, \R*\sp, \pH) node[anchor=north west]{$z_0$};
-	    \tdplotdrawarc{(0,0,0)}{0.2}{0}{\azi}{anchor=north}{$\phi$}
-	    \tdplotsetthetaplanecoords{\azi}
-	    %\tdplotdrawarc[tdplot_rotated_coords]{(0,0,0)}{0.2}{\elev}{90}{anchor=west}{$\theta$}
+		\draw[thick,->] (0,0,0) -- (1,0,0) node[anchor=north east]{$x$};
+		\draw[thick,->] (0,0,0) -- (0,1,0) node[anchor=north west]{$y$};
+		\draw[thick,->] (0,0,0) -- (0,0,1) node[anchor=south]{$z$};
+									    
+		\def\R{0.6}
+		\def\H{0.7}
+		\def\pH{0.6}
+		\pgfmathsinandcos\sx\cx{-30}
+									    
+		\draw (\R*\sx, \R*\cx, \H) -- (\R*\sx, \R*\cx, 0);
+		\draw (-\R*\sx, -\R*\cx, \H) -- (-\R*\sx, -\R*\cx, 0);
+		\draw (0, 0, \H) circle [radius=\R];
+		\draw (0, 0, 0) circle [radius=\R];
+									    
+		\def\azi{60}
+		\pgfmathsetmacro{\elev}{atan(\pH/\R)}
+		\pgfmathsinandcos\sp\cp{\azi}
+									    
+		%\draw[->] (0,0,0) -- (\R*\cp, \R*\sp, \pH);
+		\draw[->] (0,0,0) -- (\R*\cp, \R*\sp, 0) node [right, midway] {$r$};
+		\draw plot [mark=*, mark size=0.6] coordinates{(\R*\cp, \R*\sp, \pH)};
+		\draw (\R*\cp, \R*\sp, 0) -- (\R*\cp, \R*\sp, \pH) node[anchor=north west]{$z_0$};
+		\tdplotdrawarc{(0,0,0)}{0.2}{0}{\azi}{anchor=north}{$\phi$}
+		\tdplotsetthetaplanecoords{\azi}
+		%\tdplotdrawarc[tdplot_rotated_coords]{(0,0,0)}{0.2}{\elev}{90}{anchor=west}{$\theta$}
 	\end{tikzpicture}
 	\caption{$\langle x, y, z \rangle = \langle r\cos\phi, r\sin\phi, z_0\rangle$}
-	\end{figure}
+\end{figure}
 	
 	
-	The cylinder is on the x-axis:
-	\begin{figure}[h!]
+The cylinder is on the x-axis:
+\begin{figure}[h!]
 	\centering
 	\begin{tikzpicture}[tdplot_main_coords,scale=5]
-	    \draw[thick,->] (0,0,0) -- (1,0,0) node[anchor=north east]{$x$};
-	    \draw[thick,->] (0,0,0) -- (0,1,0) node[anchor=north west]{$y$};
-	    \draw[thick,->] (0,0,0) -- (0,0,1) node[anchor=south]{$z$};
-	    
-	    \def\R{0.6}
-	    \def\H{0.7}
-	    \def\pH{0.6}
-	    \pgfmathsinandcos\sx\cx{60}
-	    
-	    \tdplotsetrotatedcoords{0}{90}{0}
-	    \draw[tdplot_rotated_coords] (\R*\sx, \R*\cx, \H) -- (\R*\sx, \R*\cx, 0);
-	    \draw[tdplot_rotated_coords] (-\R*\sx, -\R*\cx, \H) -- (-\R*\sx, -\R*\cx, 0);
-	    \draw[tdplot_rotated_coords] (0, 0, \H) circle [radius=\R];
-	    \draw[tdplot_rotated_coords] (0, 0, 0) circle [radius=\R];
-	    
-	    \def\azi{70}
-	    \pgfmathsetmacro{\elev}{atan(\pH/\R)}
-	    \pgfmathsinandcos\sp\cp{\azi}
-	    
-	    %\draw[->] (0,0,0) -- (\R*\cp, \R*\sp, \pH);
-	    \draw[->,tdplot_rotated_coords] (0,0,0) -- (\R*\cp, \R*\sp, 0) node[right,midway] {$r$};
-	    \draw plot [mark=*, mark size=0.6,tdplot_rotated_coords] coordinates{(\R*\cp, \R*\sp, \pH)};
-	    \draw[tdplot_rotated_coords] (\R*\cp, \R*\sp, 0) -- (\R*\cp, \R*\sp, \pH) node[anchor=north west]{$x_0$};
-	    \tdplotsetthetaplanecoords{\azi}
-	    \tdplotdrawarc[tdplot_rotated_coords]{(0,0,0)}{0.2}{0}{180 - \azi - 10}{anchor=south}{$\phi$}
-	    
-	    %\tdplotdrawarc[tdplot_rotated_coords]{(0,0,0)}{0.2}{\elev}{90}{anchor=west}{$\theta$}
+		\draw[thick,->] (0,0,0) -- (1,0,0) node[anchor=north east]{$x$};
+		\draw[thick,->] (0,0,0) -- (0,1,0) node[anchor=north west]{$y$};
+		\draw[thick,->] (0,0,0) -- (0,0,1) node[anchor=south]{$z$};
+									    
+		\def\R{0.6}
+		\def\H{0.7}
+		\def\pH{0.6}
+		\pgfmathsinandcos\sx\cx{60}
+									    
+		\tdplotsetrotatedcoords{0}{90}{0}
+		\draw[tdplot_rotated_coords] (\R*\sx, \R*\cx, \H) -- (\R*\sx, \R*\cx, 0);
+		\draw[tdplot_rotated_coords] (-\R*\sx, -\R*\cx, \H) -- (-\R*\sx, -\R*\cx, 0);
+		\draw[tdplot_rotated_coords] (0, 0, \H) circle [radius=\R];
+		\draw[tdplot_rotated_coords] (0, 0, 0) circle [radius=\R];
+									    
+		\def\azi{70}
+		\pgfmathsetmacro{\elev}{atan(\pH/\R)}
+		\pgfmathsinandcos\sp\cp{\azi}
+									    
+		%\draw[->] (0,0,0) -- (\R*\cp, \R*\sp, \pH);
+		\draw[->,tdplot_rotated_coords] (0,0,0) -- (\R*\cp, \R*\sp, 0) node[right,midway] {$r$};
+		\draw plot [mark=*, mark size=0.6,tdplot_rotated_coords] coordinates{(\R*\cp, \R*\sp, \pH)};
+		\draw[tdplot_rotated_coords] (\R*\cp, \R*\sp, 0) -- (\R*\cp, \R*\sp, \pH) node[anchor=north west]{$x_0$};
+		\tdplotsetthetaplanecoords{\azi}
+		\tdplotdrawarc[tdplot_rotated_coords]{(0,0,0)}{0.2}{0}{180 - \azi - 10}{anchor=south}{$\phi$}
+									    
+		%\tdplotdrawarc[tdplot_rotated_coords]{(0,0,0)}{0.2}{\elev}{90}{anchor=west}{$\theta$}
 	\end{tikzpicture}
 	\caption{$\langle x, y, z \rangle = \langle x_0, r\sin\phi, r\cos\phi\rangle$}
-	\end{figure}
+\end{figure}
 	
 	
-	\subsubsection{Spherical Coordinates}
-	Like cylindrical coordinates, there are also multiple ways of mapping to spherical coordinates depending on what's the configuration of the angles.
-	\begin{figure}[h!]
+\subsubsection{Spherical Coordinates}
+Like cylindrical coordinates, there are also multiple ways of mapping to spherical coordinates depending on what's the configuration of the angles.
+\begin{figure}[h!]
 	\centering
 	\tdplotsetmaincoords{70}{130}
-	    \begin{tikzpicture}[tdplot_main_coords,scale=5]
-	    \draw[thick,->] (0,0,0) -- (1,0,0) node[anchor=north east]{$x$};
-	    \draw[thick,->] (0,0,0) -- (0,1,0) node[anchor=north west]{$y$};
-	    \draw[thick,->] (0,0,0) -- (0,0,1) node[anchor=south]{$z$};
-	    
-	    \def\R{0.8}
-	    \def\elev{40}
-	    \def\azi{60}
-	    \pgfmathsinandcos\sa\ca{\azi}
-	    \pgfmathsinandcos\se\ce{\elev}
-	     
-	     \draw[dashed] (0,0) circle (\R);
-	     \coordinate (P) at (\R*\ce*\ca, \R*\ce*\sa, \R*\se);
-	     \draw[->] (0,0,0) -- (P) node[left, midway] {$r$};
-	    \draw[->] (0,0,0) -- (\R*\ce*\ca, \R*\ce*\sa, 0);
-	    \draw plot [mark=*, mark size=0.6] coordinates{(P)};
-	    \draw[dashed] (\R*\ce*\ca, \R*\ce*\sa, 0) -- (P);
-	    \tdplotdrawarc{(0,0,0)}{0.2}{0}{\azi}{anchor=north}{$\phi$}
-	    \tdplotsetthetaplanecoords{\azi}
-	    \tdplotdrawarc[tdplot_rotated_coords]{(0,0,0)}{0.2}{\elev}{90}{anchor=west}{$\theta$}
-	     \draw[dashed,tdplot_rotated_coords] (0,0) circle (\R);
-	     \draw[tdplot_screen_coords] (0,0) circle (\R);  
+	\begin{tikzpicture}[tdplot_main_coords,scale=5]
+		\draw[thick,->] (0,0,0) -- (1,0,0) node[anchor=north east]{$x$};
+		\draw[thick,->] (0,0,0) -- (0,1,0) node[anchor=north west]{$y$};
+		\draw[thick,->] (0,0,0) -- (0,0,1) node[anchor=south]{$z$};
+									    
+		\def\R{0.8}
+		\def\elev{40}
+		\def\azi{60}
+		\pgfmathsinandcos\sa\ca{\azi}
+		\pgfmathsinandcos\se\ce{\elev}
+									     
+		\draw[dashed] (0,0) circle (\R);
+		\coordinate (P) at (\R*\ce*\ca, \R*\ce*\sa, \R*\se);
+		\draw[->] (0,0,0) -- (P) node[left, midway] {$r$};
+		\draw[->] (0,0,0) -- (\R*\ce*\ca, \R*\ce*\sa, 0);
+		\draw plot [mark=*, mark size=0.6] coordinates{(P)};
+		\draw[dashed] (\R*\ce*\ca, \R*\ce*\sa, 0) -- (P);
+		\tdplotdrawarc{(0,0,0)}{0.2}{0}{\azi}{anchor=north}{$\phi$}
+		\tdplotsetthetaplanecoords{\azi}
+		\tdplotdrawarc[tdplot_rotated_coords]{(0,0,0)}{0.2}{\elev}{90}{anchor=west}{$\theta$}
+		\draw[dashed,tdplot_rotated_coords] (0,0) circle (\R);
+		\draw[tdplot_screen_coords] (0,0) circle (\R);  
 	\end{tikzpicture}
 	\caption{$\langle x, y, z \rangle = \langle r\cos\theta\cos\phi, r\cos\theta\sin\phi, r\sin\theta \rangle$}
-	\end{figure}
+\end{figure}
 	
-	\section{Vector Math}
-	Let $u = \langle a_1, a_2, \dots, a_n \rangle$, $v = \langle b_1,b_2, \dots, b_n \rangle$, $w = \langle c_1, c_2, \dots, c_n \rangle$, and $s \in \mathbb{R}$
-	\subsection{Basic Operations}
-	\begin{align*}
-	u + v &= \langle a_1 + b_1, a_2 + b_2, \dots, a_n + b_n \rangle \\
-	su &= \langle sa_1, sa_2, \dots, sa_n \rangle \\
-	|u| &= \sqrt{a_1^2 + a_2^2 + \dots + a_n^2}
-	\end{align*}
+\section{Vector Math}
+Let $u = \langle a_1, a_2, \dots, a_n \rangle$, $v = \langle b_1,b_2, \dots, b_n \rangle$, $w = \langle c_1, c_2, \dots, c_n \rangle$, and $s \in \mathbb{R}$
+\subsection{Basic Operations}
+\begin{align*}
+	u + v & = \langle a_1 + b_1, a_2 + b_2, \dots, a_n + b_n \rangle \\
+	su    & = \langle sa_1, sa_2, \dots, sa_n \rangle                \\
+	|u|   & = \sqrt{a_1^2 + a_2^2 + \dots + a_n^2}                   
+\end{align*}
 	
-	Note that $|u| >= 0$ and $|u| = 0 \Leftrightarrow u = \vec{0}$
+Note that $|u| >= 0$ and $|u| = 0 \Leftrightarrow u = \vec{0}$
 	
-	\subsection{Perp Operator}
-	For 2d vectors $u = \langle x, y \rangle$:
-	$u^\perp = \langle -y, x \rangle$. This is also know as "turn left" and derived from rotating the vector by $\frac{\pi}{2}$:
+\subsection{Perp Operator}
+For 2d vectors $u = \langle x, y \rangle$:
+$u^\perp = \langle -y, x \rangle$. This is also know as "turn left" and derived from rotating the vector by $\frac{\pi}{2}$:
 	
-	$$
-	\begin{bmatrix}
-	\cos\frac{\pi}{2} & -\sin\frac{\pi}{2}\\
-	\sin\frac{\pi}{2} & \cos\frac{\pi}{2}\\
-	\end{bmatrix}\begin{bmatrix}
-	x\\
-	y
-	\end{bmatrix} = 
-	\begin{bmatrix}
-	0 & -1\\
-	1 & 0\\
-	\end{bmatrix}\begin{bmatrix}
-	x\\
-	y
-	\end{bmatrix} =
-	\begin{bmatrix}
-	-y\\
-	x
-	\end{bmatrix}
-	$$
+$$
+\begin{bmatrix}
+	\cos\frac{\pi}{2} & -\sin\frac{\pi}{2} \\
+	\sin\frac{\pi}{2} & \cos\frac{\pi}{2}  \\
+\end{bmatrix}\begin{bmatrix}
+x\\
+y
+\end{bmatrix} = 
+\begin{bmatrix}
+	0 & -1 \\
+	1 & 0  \\
+\end{bmatrix}\begin{bmatrix}
+x\\
+y
+\end{bmatrix} =
+\begin{bmatrix}
+	-y \\
+	x  
+\end{bmatrix}
+$$
 	
-	\subsection{Normalization}
-	Normalization is the process of making a vector have unit length but still point to the same direction, the normalized vector is denoted by a hat symbol on top of it:
-	$$
-	\hat{u} = \frac{u}{|u|}
-	$$
+\subsection{Normalization}
+Normalization is the process of making a vector have unit length but still point to the same direction, the normalized vector is denoted by a hat symbol on top of it:
+$$
+\hat{u} = \frac{u}{|u|}
+$$
 	
-	As convention, $\hat{x} = \langle 1, 0, 0 \rangle$, $\hat{y} = \langle 0, 1, 0 \rangle$, and $\hat{z} = \langle 0, 0, 1 \rangle$.
+As convention, $\hat{x} = \langle 1, 0, 0 \rangle$, $\hat{y} = \langle 0, 1, 0 \rangle$, and $\hat{z} = \langle 0, 0, 1 \rangle$.
 	
-	\subsection{Dot Product}
-	$$
-	u \cdot v = a_1b_1 + a_2b_2 + \dots + a_nb_n = \sum_{i=1}^{n}a_ib_i
-	$$
-	Properties of the dot product:
-	\begin{align*}
-	u \cdot v &= v \cdot u\\
-	(su) \cdot v &= s(u \cdot v) = u\cdot (sv) \\
-	u^2 &= u \cdot u = |u|^2
-	\end{align*}
-	$u \neq \vec{0}$ and $v \neq \vec{0} $ are orthogonal (perpendicular) if and only if $u \cdot v = 0$
+\subsection{Dot Product}
+$$
+u \cdot v = a_1b_1 + a_2b_2 + \dots + a_nb_n = \sum_{i=1}^{n}a_ib_i
+$$
+Properties of the dot product:
+\begin{align*}
+	u \cdot v    & = v \cdot u                  \\
+	(su) \cdot v & = s(u \cdot v) = u\cdot (sv) \\
+	u^2          & = u \cdot u = |u|^2          
+\end{align*}
+$u \neq \vec{0}$ and $v \neq \vec{0} $ are orthogonal (perpendicular) if and only if $u \cdot v = 0$
 	
-	$$
-	(u - v)^2 = (u - v)\cdot(u - v) = u^2 -2u\cdot v + v^2 = u^2 + v^2 -2u\cdot v
-	$$
-	Which leads to:
-	$$
-	u \cdot v = |u||v|\cos\theta
-	$$
-	where $\theta$ is the angle between $u$ and $v$.
+$$
+(u - v)^2 = (u - v)\cdot(u - v) = u^2 -2u\cdot v + v^2 = u^2 + v^2 -2u\cdot v
+$$
+Which leads to:
+$$
+u \cdot v = |u||v|\cos\theta
+$$
+where $\theta$ is the angle between $u$ and $v$.
 	
-	$$
-	u \cdot v = \begin{cases}
-	> 0 \Leftrightarrow \theta < \frac{\pi}{2},\\
-	= 0 \Leftrightarrow \theta = \frac{\pi}{2}, \\
-	< 0 \Leftrightarrow \theta > \frac{\pi}{2}
-	\end{cases}
-	$$
+$$
+u \cdot v = \begin{cases}
+> 0 \Leftrightarrow \theta < \frac{\pi}{2},\\
+= 0 \Leftrightarrow \theta = \frac{\pi}{2}, \\
+< 0 \Leftrightarrow \theta > \frac{\pi}{2}
+\end{cases}
+$$
 	
-	\subsection{Cross Product}
-	For 2D vectors:
-	$$
-	u \times v = a_1b_2 - a_2b_1 = \begin{vmatrix}a_1 & a_2 \\ b_1 & b_2 \end{vmatrix}
-	$$
-	For 3D vectors:
-	$$
-	u \times v = \langle a_2b_3 - a_3b_2, -(a_1b_3 - a_3b_1), a_1b_2 - a_2b_1\rangle = \begin{vmatrix}\hat{x} & \hat{y} & \hat{z} \\ a_1 & a_2 & a_3 \\ b_1 & b_2 & b_3\end{vmatrix}
-	$$
+\subsection{Cross Product}
+For 2D vectors:
+$$
+u \times v = a_1b_2 - a_2b_1 = \begin{vmatrix}a_1 & a_2 \\ b_1 & b_2 \end{vmatrix}
+$$
+For 3D vectors:
+$$
+u \times v = \langle a_2b_3 - a_3b_2, -(a_1b_3 - a_3b_1), a_1b_2 - a_2b_1\rangle = \begin{vmatrix}\hat{x} & \hat{y} & \hat{z} \\ a_1 & a_2 & a_3 \\ b_1 & b_2 & b_3\end{vmatrix}
+$$
 	
-	Note that you can get a similar result for 2D using the 3D definition by setting the third coordinate to be $0$, that is:
-	$$
-	u \times v =  \begin{vmatrix}\hat{x} & \hat{y} & \hat{z} \\ a_1 & a_2 & 0 \\ b_1 & b_2 & 0\end{vmatrix} = \langle 0, 0, a_1b_2 - a_2b_1\rangle
-	$$
+Note that you can get a similar result for 2D using the 3D definition by setting the third coordinate to be $0$, that is:
+$$
+u \times v =  \begin{vmatrix}\hat{x} & \hat{y} & \hat{z} \\ a_1 & a_2 & 0 \\ b_1 & b_2 & 0\end{vmatrix} = \langle 0, 0, a_1b_2 - a_2b_1\rangle
+$$
 	
-	Properties of the cross product:
-	\begin{align*}
-	u \times v &= -(v \times u)\\
-	u \times v &= |u||v|\sin\theta\\
-	(su) \times v &= s(u \times v) = u \times (sv)\\
-	(u \times v) \cdot u &= (u \times v) \cdot v = 0 \\
-	(u \times v) \times w &\neq u \times (v \times w) \\
-	(u + v)\times w &= (u \times w) + (v \times w)
-	\end{align*}
-	\subsection{Triple Product}
-	\subsubsection{Scalar Triple Product}
-	\begin{align}(u \times v) \cdot w = u \cdot (v \times w)\end{align}
-	\subsubsection{Vector Triple Product}
-	\begin{align}u \times (v \times w) = v(u \cdot w) - w(u \cdot v)\end{align}
-	\subsection{Applications (1)}
-		\subsubsection{Angle Between Vectors}
-		\begin{align}
-		\theta = \acos\left(\frac{u \cdot v}{|u||v|}\right)
-		\end{align}
-		Note $\theta \geq 0$ by virtue of 1) the $\acos$ function whose range is $[0, \pi]$ and 2) $\acos$'s inability to distinguish points on $+y$ from points on $-y$. Remember, $\cos$ maps the points of a unit circle to its x-position. As a result, this does not distinguish the direction of the angle. It does not say whether $v$ is located clockwise or counter-clocwise to $u$. To get such information, we can use the cross product:
-		$\sin$ doesn't give us the full angle since it does not distinguish angles $0, \frac{\pi}{2}$ to angles $\frac{\pi}{2}, \pi$
+Properties of the cross product:
+\begin{align*}
+	u \times v            & = -(v \times u)                 \\
+	u \times v            & = |u||v|\sin\theta              \\
+	(su) \times v         & = s(u \times v) = u \times (sv) \\
+	(u \times v) \cdot u  & = (u \times v) \cdot v = 0      \\
+	(u \times v) \times w & \neq u \times (v \times w)      \\
+	(u + v)\times w       & = (u \times w) + (v \times w)   
+\end{align*}
+\subsection{Triple Product}
+\subsubsection{Scalar Triple Product}
+\begin{align}(u \times v) \cdot w = u \cdot (v \times w)\end{align}
+\subsubsection{Vector Triple Product}
+\begin{align}u \times (v \times w) = v(u \cdot w) - w(u \cdot v)\end{align}
+\subsection{Applications (1)}
+\subsubsection{Angle Between Vectors}
+\begin{align}
+	\theta = \acos\left(\frac{u \cdot v}{|u||v|}\right) 
+\end{align}
+Note $\theta \geq 0$ by virtue of 1) the $\acos$ function whose range is $[0, \pi]$ and 2) $\acos$'s inability to distinguish points on $+y$ from points on $-y$. Remember, $\cos$ maps the points of a unit circle to its x-position. As a result, this does not distinguish the direction of the angle. It does not say whether $v$ is located clockwise or counter-clocwise to $u$. To get such information, we can use the cross product:
+$\sin$ doesn't give us the full angle since it does not distinguish angles $0, \frac{\pi}{2}$ to angles $\frac{\pi}{2}, \pi$
 		
-		\subsubsection{Triangle Area and Orientation}
+\subsubsection{Triangle Area and Orientation}
 		
-		To check if 3 points, ${p_0, p_1, p_2}$ are collinear, simply check of the triangle formed by the 3 points is degenerate, that is:
-		$$
-		(p_1-p_0)\times (p_2-p_0) = 0
-		$$
+To check if 3 points, ${p_0, p_1, p_2}$ are collinear, simply check of the triangle formed by the 3 points is degenerate, that is:
+$$
+(p_1-p_0)\times (p_2-p_0) = 0
+$$
 		
-		To check if a triangle ${p_0, p_1, p_2}$ is obtuse, acute, or right.
-		\begin{align}
-		min((p_i - p_j) \cdot (p_k - p_j))_{ (i,j,k) \in \{0,1,2\}^3}
-		\begin{cases}
-	            > 0 &\text{acute},\\
-	            = 0 & \text{right}, \\
-	            < 0 & \text{obtuse}
-	        \end{cases}
-		\end{align}
-		
-		\subsubsection{Volume of a Parallelepiped}
-	    	\begin{tikzpicture}[tdplot_main_coords,scale=5]
-		    \coordinate (U) at (0.1, 0.2, 0.3);
-		    \coordinate (V) at (-0.1, 0.4, 0.2);
-		    \coordinate (W) at (0, 0.4, -0.1);
-		    
-		    \draw[thick,->] (0,0,0) -- (0.2,0,0) node[anchor=north east]{$x$};
-		    \draw[thick,->] (0,0,0) -- (0,0.2,0) node[anchor=north west]{$y$};
-		    \draw[thick,->] (0,0,0) -- (0,0,0.2) node[anchor=south]{$z$};
-		    \draw[->](0,0,0) -- (U)  node[anchor=north east]{$u$};
-		    \draw[->, dashed](0,0,0) -- (V)  node[anchor=north east]{$v$};
-		    \draw[->](0,0,0) -- (W)  node[anchor=north east]{$w$};
-		    
-		    \draw[-](U) -- ++(V) -- ++(W);
-		    \draw[-](U) -- ++(W) -- ++(V);
-		    
-		    \draw[dashed](V) -- ++(W);
-		    \draw[dashed](V) -- +(U);
-		    \draw ($(V)+(W)$) -- +(U);
-		    
-		    \draw[-](W)  -- +(V);
-		    \draw[-](W)  -- +(U);
-		\end{tikzpicture}
-		Area = $|u \cdot (v \times w)|$
-	\subsection{Projection}
-		\begin{center}
-		\begin{tikzpicture}
-			\draw[->] (0,0) -- node[below] {$\vec{u}$} (1.0, 0);
-			\draw[->] (0,0) -- node[above, sloped] {$\vec{v}$} (3, 2);
-			\draw (0, -0.7) -- (0, -0.9);
-			\draw (0, -0.8) -- node[below] {$|\vec{v}|\cos\theta$} (3, -0.8);
-			\draw (3, -0.7) -- (3, -0.9);
-			\draw[color=red, dotted, thick] (0,0) --  (3, 0);
-			\draw[color=green, dotted, thick] (3,2) --  (3, 0);
-		\end{tikzpicture}
-		\end{center}
-		How do we get a vector with the same direction as $\vec{u}$ but with the magnitude of $|\vec{v}|\cos\theta$?
-		
-		If we assume $|\vec{u}| = 1$, and let
-		$$
-		\vec{w} = (\vec{u} \cdot \vec{v})\vec{u} = (|\vec{v}|\cos\theta)\vec{u}
-		$$
-		\begin{center}
-		\begin{tikzpicture}
-			\draw[->] (0,0) -- node[below] {$\vec{u}$} (1.0, 0);
-			\draw[->] (0,0) -- node[above, sloped] {$\vec{v}$} (3, 2);
-			\draw[->] (0, -0.8) -- node[below] {$\vec{w}$} (3, -0.8);
-			\draw[color=red, dotted, thick] (0,0) --  (3, 0);
-			\draw[color=green, dotted, thick] (3,2) --  (3, 0);
-		\end{tikzpicture}
-		\end{center}
-		This is what we call ``projection''.
-		
-		What if $|\vec{u}| \neq 1$? Consider the normalized vector $\hat{u}$.
-		$$
-			\hat{u} = \|\vec{u}\| = \frac{\vec{u}}{|\vec{u}|}
-		$$
-		So we can get the same resultant vector by computing $(\hat{u}\cdot\vec{v})\vec{u_N}$. Expanding this:
-		\begin{align*}
-			(\hat{u}\cdot\vec{v})\hat{u} &= \left(\frac{\vec{u}}{|\vec{u}|}\cdot\vec{v}\right)\frac{\vec{u}}{|\vec{u}|}\\
-			&= \frac{\vec{u}\cdot\vec{v}}{|\vec{u}|^2}\vec{u}\\
-			&= \frac{\vec{u}\cdot\vec{v}}{\vec{u}\cdot\vec{u}}\vec{u}
-		\end{align*}
-		
-	
-			Let $\vec{u}, \vec{v} \in \mathbb{R}^n$ with $\vec{u} \neq 0$, the projection of vector $\vec{v}$ into $\vec{u}$ defined as:
-			\begin{align}
-			\proj{\vec{u}}{\vec{v}} = \frac{\vec{u}\cdot\vec{v}}{\vec{u}\cdot\vec{u}}\vec{u}
-			\end{align}
-	
-	
-		If $|\vec{u}| = 1$ then the function simplifies to
-		\begin{align}
-			\proj{\vec{u}}{\vec{v}} = (\vec{u}\cdot\vec{v})\vec{u}
-		\end{align}
-	
-		
-	\subsection{Reflection}
-		\begin{center}
-			\begin{tikzpicture}[>=stealth]
-				\draw[->,thick] (-2,1.5) -- node[below] {$\vec{i}$} (0,0);
-				\draw[->,thick] (0,0) -- node[right] {$\vec{n}$} (0,.8);
-				\draw[->,thick] (0,0) -- node[below] {$\vec{r}$} (2,1.5);
-				\draw (-3,0) -- (3,0);
-			\end{tikzpicture}
-		\end{center}
-	The reflection of an incident vector $\vec{i}$, hitting a plane with normal $\vec{n}$ is:
-		\begin{align}
-			\vec{r}_{\vec{n}}(\vec{i}) = \vec{i} - 2\proj{\vec{n}}{\vec{i}}
-		\end{align}
-	Note that $\vec{r}_{\vec{n}}$ is an involution: $\vec{r}_{\vec{n}}(\vec{r}_{\vec{n}}(\vec{i})) = \vec{i}$
-	
-	\subsection{Applications (2)}
-		\subsubsection{Approaching or Separating Objects}
-		Given two objects, $A$, $B$, with positions, $p_A$, $p_B$, and velocities $v_A$, $v_B$, how do you determine if the two objects are approaching or separating from each other?
-		Note that $p_B - p_A$ is the relative position of $B$ with respect to $A$ (i.e. where $B$ is if $A$ is the origin) and $v_B - v_A$ is the relative velocity of $B$ with respect to $A$ (i.e. where $B$ is moving from the point of view of $A$)
-		\begin{align}
-			(p_B - p_A) \cdot (v_B - v_A) = 
-			\begin{cases}
-				> 0 & \text{separating} \\
-				< 0 & \text{approaching} \\
-				= 0 & \text{neither}
-			\end{cases}
-		\end{align}
-		
-		\subsubsection{Line Orientation}
-		\begin{tikzpicture}
-			\draw(0,0)--(2,1);
-			\draw (0,0) node[below] {$A$};
-			\draw (2,1) node[above] {$B$};
-			
-			\filldraw(1.2,1) circle[radius=0.05] node[above] {$C$};
-		\end{tikzpicture}
-		
-		If we have a line going from $A$ to $B$ in 2D, given point $C$ (a cow), how do we determine if $C$ is at the left, or right of line $\overline{AB}$?
-		\begin{align}
-		(B - A) \times (C - A) = \begin{cases}
-		> 0 & \text{left}\\
-		< 0 & \text{right}\\
-		= 0 & \text{along}
-		\end{cases}
-		\end{align}
-		\subsubsection{Point Detection}
-		Given a simple convex polygon with vertices $p_1, p_2, \dots, p_n$, how do you check if a point $p_c$ is inside, or outside the polygon? The key here is that if you imagine that you're walking along a convex polygon, the point is inside the polygon if and only if it's always on the same side (e.g. it's either always at your left, or always at your right).
-		
-		So to do that we check if $(p_{i+1} - p_i) \times (p_c - p_i)$ has the same sign for all $i \in [1,n]$ with $p_{n + 1} = p_1$. Note that if there's a $0$, it could mean that the point is along one of the lines extended by the edge. So they could be ignored if we're just concerned with detecting if the point is outside, or factored in if we want to distinguish between the point being IN the polygon or it being ON the edge of the polygon.
-		
-		\subsubsection{Area Computation}
-		Given a simple polygon (convex or non-convex), with vertices $p_1, p_2, \dots, p_n$ with $p_{n+1} = p_1$, we can compute the area by selecting any point $p_c$ ($p_c$ could be $\vec{0}$ or $p_1$) and compute:
-		\begin{align}
-		\sum_{i = 1}^{n} (p_{i + 1} - p_i) \times (p_c - p_i)
-		\end{align}
-		\subsubsection{Convex Detection}
-		Given a simple polygon, with vertices $p_1, p_2, \dots, p_n$ with $p_{n+1} = p_1$ and $p_{n+2} = p_2$, we detect if it's convex or not by tracing the edge and noting whether it turns only on one direction (always left or always right):
-		\begin{align*}
-		(p_{i + 1} - p_i) \times (p_{i + 2} - p_{i + 1}) > 0 & \quad \forall i \in [1,n] \quad \text{or}\\
-		(p_{i + 1} - p_i) \times (p_{i + 2} - p_{i + 1}) < 0 & \quad \forall i \in [1,n]
-		\end{align*}
-		\subsubsection{Backface Culling}
-		TODO
-		\subsubsection{2D Cone Test}
-	        	Suppose we have a game where we need to check if a target $t$ falls within a certain distance $r$ from the player $p$ and field of view $\theta$ from where the player is facing $\hat{f}$ as shown below:
-	        	\begin{center}
-	        	\begin{tikzpicture}
-	        	\draw (0,0) circle[radius=2];
-	        	\filldraw (0,0) circle[radius=0.05] node[above] {$p$};
-	        	
-	        	\pgfmathsinandcos\sx\cx{30}
-	        	    
-	        	\filldraw[color=blue!30] (0,0) -- (2 * \cx, 2 * \sx) arc[start angle=30,end angle=-30, radius=2] -- (2 * \cx, -2 * \sx);
-	        	\draw[->,thick] (0,0) -- node[below] {$\hat{f}$} (1, 0);
-	        	\draw[-] (0,0) -- node[left] {$r$} (0, -2);
-	        	\draw (1,0) arc [start angle=0, end angle=30, radius=1] node[right]{$\theta$};
-	        		
-	        	\end{tikzpicture}
-	        	\end{center}
-	        	To check if the target is inside the circle, simply check for $|t - p|^2 \leq r^2$, to check whether it's within the field of view:
-	        	\begin{align}
-	        	\frac{(t - p) \cdot \hat{f}}{|t - p|} = \begin{cases}
-	        	< \cos\theta & \text{outside}\\
-	        	\geq \cos\theta & \text{inside} \\
-	        	\end{cases}
-	        	\end{align}
-		
-		\subsubsection{Closest Point of Approach}
-		TODO
-	\subsection{Barycentric Coordinates}
-		Given line $\overline{AB}$, we can express any point $P$ on the line as $P = \alpha A + \beta B$ with $\alpha + \beta = 1$. The tuple $(\alpha : \beta)$, is called the barycentric coordinates of $P$ on line $\overline{AB}$. An alternate way of expressing this is $P = \alpha A + (1 - \alpha) B$ reducing the number of coordinates by one.
-		
-		Barycentric coordinates could applied on any simplex (a more general term for a "triangle" extended to arbitrary dimensions): a 0D simplex is a point, a 1D simplex is a line segment, a 2D simplex is a triangle, a 3D simplex is a tetrahedron (also a triangular pyramid), etc.
-		
-		For a 2D triangle $\triangle ABC$, a point $P$ is expressed as $P = \alpha A + \beta B + \gamma C$ with $\alpha + \beta + \gamma = 1$. To solve for $(\alpha : \beta : \gamma)$, one way is to rewrite it as a matrix equation:
-	$$
-	P = 
-	\begin{bmatrix}
-	A & B & C
-	\end{bmatrix}
-	\begin{bmatrix}
-	\alpha \\ \beta \\ \gamma
-	\end{bmatrix}
-	$$
-	then solve for $\begin{bmatrix}\alpha & \beta & \gamma\end{bmatrix}^T$ using least squares. We can however reduce the dimensionality by rewriting the equation as
-	\begin{align*}
-	P &= \alpha A + \beta B + (1 - \alpha - \beta) C\\
-	P &= \alpha A + \beta B + C - \alpha C - \beta C\\
-	P - C &= \alpha (A - C) + \beta (B - C)
-	\end{align*}
-	Let $v_p = P - C$, $v_1 = A - C$ and $v_2 = B - C$, so our equation is now $v_p = \alpha v_1 + \beta v_2$ we then can generate a system of linear equations by computing the dot product of the entire vector equation with $v_1$ and $v_2$:
-	$$
+To check if a triangle ${p_0, p_1, p_2}$ is obtuse, acute, or right.
+\begin{align}
+	min((p_i - p_j) \cdot (p_k - p_j))_{ (i,j,k) \in \{0,1,2\}^3}
 	\begin{cases}
-	v_1 \cdot v_p &= \alpha v_1 \cdot v_1 + \beta v_1 \cdot v_2 \\
-	v_2 \cdot v_p &= \alpha v_2 \cdot v_1 + \beta v_2 \cdot v_2
+	> 0 & \text{acute}, \\
+	= 0 & \text{right}, \\
+	< 0 & \text{obtuse} 
 	\end{cases}
-	$$
-	which, in matrix form is:
-	$$
-	\begin{bmatrix}
+\end{align}
+		
+\subsubsection{Volume of a Parallelepiped}
+\begin{tikzpicture}[tdplot_main_coords,scale=5]
+	\coordinate (U) at (0.1, 0.2, 0.3);
+	\coordinate (V) at (-0.1, 0.4, 0.2);
+	\coordinate (W) at (0, 0.4, -0.1);
+						    
+	\draw[thick,->] (0,0,0) -- (0.2,0,0) node[anchor=north east]{$x$};
+	\draw[thick,->] (0,0,0) -- (0,0.2,0) node[anchor=north west]{$y$};
+	\draw[thick,->] (0,0,0) -- (0,0,0.2) node[anchor=south]{$z$};
+	\draw[->](0,0,0) -- (U)  node[anchor=north east]{$u$};
+	\draw[->, dashed](0,0,0) -- (V)  node[anchor=north east]{$v$};
+	\draw[->](0,0,0) -- (W)  node[anchor=north east]{$w$};
+						    
+	\draw[-](U) -- ++(V) -- ++(W);
+	\draw[-](U) -- ++(W) -- ++(V);
+						    
+	\draw[dashed](V) -- ++(W);
+	\draw[dashed](V) -- +(U);
+	\draw ($(V)+(W)$) -- +(U);
+						    
+	\draw[-](W)  -- +(V);
+	\draw[-](W)  -- +(U);
+\end{tikzpicture}
+Area = $|u \cdot (v \times w)|$
+\subsection{Projection}
+\begin{center}
+	\begin{tikzpicture}
+		\draw[->] (0,0) -- node[below] {$\vec{u}$} (1.0, 0);
+		\draw[->] (0,0) -- node[above, sloped] {$\vec{v}$} (3, 2);
+		\draw (0, -0.7) -- (0, -0.9);
+		\draw (0, -0.8) -- node[below] {$|\vec{v}|\cos\theta$} (3, -0.8);
+		\draw (3, -0.7) -- (3, -0.9);
+		\draw[color=red, dotted, thick] (0,0) --  (3, 0);
+		\draw[color=green, dotted, thick] (3,2) --  (3, 0);
+	\end{tikzpicture}
+\end{center}
+How do we get a vector with the same direction as $\vec{u}$ but with the magnitude of $|\vec{v}|\cos\theta$?
+		
+If we assume $|\vec{u}| = 1$, and let
+$$
+\vec{w} = (\vec{u} \cdot \vec{v})\vec{u} = (|\vec{v}|\cos\theta)\vec{u}
+$$
+\begin{center}
+	\begin{tikzpicture}
+		\draw[->] (0,0) -- node[below] {$\vec{u}$} (1.0, 0);
+		\draw[->] (0,0) -- node[above, sloped] {$\vec{v}$} (3, 2);
+		\draw[->] (0, -0.8) -- node[below] {$\vec{w}$} (3, -0.8);
+		\draw[color=red, dotted, thick] (0,0) --  (3, 0);
+		\draw[color=green, dotted, thick] (3,2) --  (3, 0);
+	\end{tikzpicture}
+\end{center}
+This is what we call ``projection''.
+		
+What if $|\vec{u}| \neq 1$? Consider the normalized vector $\hat{u}$.
+$$
+\hat{u} = \|\vec{u}\| = \frac{\vec{u}}{|\vec{u}|}
+$$
+So we can get the same resultant vector by computing $(\hat{u}\cdot\vec{v})\vec{u_N}$. Expanding this:
+\begin{align*}
+	(\hat{u}\cdot\vec{v})\hat{u} & = \left(\frac{\vec{u}}{|\vec{u}|}\cdot\vec{v}\right)\frac{\vec{u}}{|\vec{u}|} \\
+	                             & = \frac{\vec{u}\cdot\vec{v}}{|\vec{u}|^2}\vec{u}                              \\
+	                             & = \frac{\vec{u}\cdot\vec{v}}{\vec{u}\cdot\vec{u}}\vec{u}                      
+\end{align*}
+		
+	
+Let $\vec{u}, \vec{v} \in \mathbb{R}^n$ with $\vec{u} \neq 0$, the projection of vector $\vec{v}$ into $\vec{u}$ defined as:
+\begin{align}
+	\proj{\vec{u}}{\vec{v}} = \frac{\vec{u}\cdot\vec{v}}{\vec{u}\cdot\vec{u}}\vec{u} 
+\end{align}
+	
+	
+If $|\vec{u}| = 1$ then the function simplifies to
+\begin{align}
+	\proj{\vec{u}}{\vec{v}} = (\vec{u}\cdot\vec{v})\vec{u} 
+\end{align}
+	
+		
+\subsection{Reflection}
+\begin{center}
+	\begin{tikzpicture}[>=stealth]
+		\draw[->,thick] (-2,1.5) -- node[below] {$\vec{i}$} (0,0);
+		\draw[->,thick] (0,0) -- node[right] {$\vec{n}$} (0,.8);
+		\draw[->,thick] (0,0) -- node[below] {$\vec{r}$} (2,1.5);
+		\draw (-3,0) -- (3,0);
+	\end{tikzpicture}
+\end{center}
+The reflection of an incident vector $\vec{i}$, hitting a plane with normal $\vec{n}$ is:
+\begin{align}
+	\vec{r}_{\vec{n}}(\vec{i}) = \vec{i} - 2\proj{\vec{n}}{\vec{i}} 
+\end{align}
+Note that $\vec{r}_{\vec{n}}$ is an involution: $\vec{r}_{\vec{n}}(\vec{r}_{\vec{n}}(\vec{i})) = \vec{i}$
+	
+\subsection{Applications (2)}
+\subsubsection{Approaching or Separating Objects}
+Given two objects, $A$, $B$, with positions, $p_A$, $p_B$, and velocities $v_A$, $v_B$, how do you determine if the two objects are approaching or separating from each other?
+Note that $p_B - p_A$ is the relative position of $B$ with respect to $A$ (i.e. where $B$ is if $A$ is the origin) and $v_B - v_A$ is the relative velocity of $B$ with respect to $A$ (i.e. where $B$ is moving from the point of view of $A$)
+\begin{align}
+	(p_B - p_A) \cdot (v_B - v_A) = 
+	\begin{cases}
+	> 0 & \text{separating}  \\
+	< 0 & \text{approaching} \\
+	= 0 & \text{neither}     
+	\end{cases}
+\end{align}
+		
+\subsubsection{Line Orientation}
+\begin{tikzpicture}
+	\draw(0,0)--(2,1);
+	\draw (0,0) node[below] {$A$};
+	\draw (2,1) node[above] {$B$};
+							
+	\filldraw(1.2,1) circle[radius=0.05] node[above] {$C$};
+\end{tikzpicture}
+		
+If we have a line going from $A$ to $B$ in 2D, given point $C$ (a cow), how do we determine if $C$ is at the left, or right of line $\overline{AB}$?
+\begin{align}
+	(B - A) \times (C - A) = \begin{cases}
+	> 0 & \text{left}  \\
+	< 0 & \text{right} \\
+	= 0 & \text{along} 
+	\end{cases}
+\end{align}
+\subsubsection{Point Detection}
+Given a simple convex polygon with vertices $p_1, p_2, \dots, p_n$, how do you check if a point $p_c$ is inside, or outside the polygon? The key here is that if you imagine that you're walking along a convex polygon, the point is inside the polygon if and only if it's always on the same side (e.g. it's either always at your left, or always at your right).
+		
+So to do that we check if $(p_{i+1} - p_i) \times (p_c - p_i)$ has the same sign for all $i \in [1,n]$ with $p_{n + 1} = p_1$. Note that if there's a $0$, it could mean that the point is along one of the lines extended by the edge. So they could be ignored if we're just concerned with detecting if the point is outside, or factored in if we want to distinguish between the point being IN the polygon or it being ON the edge of the polygon.
+		
+\subsubsection{Area Computation}
+Given a simple polygon (convex or non-convex), with vertices $p_1, p_2, \dots, p_n$ with $p_{n+1} = p_1$, we can compute the area by selecting any point $p_c$ ($p_c$ could be $\vec{0}$ or $p_1$) and compute:
+\begin{align}
+	\sum_{i = 1}^{n} (p_{i + 1} - p_i) \times (p_c - p_i) 
+\end{align}
+\subsubsection{Convex Detection}
+Given a simple polygon, with vertices $p_1, p_2, \dots, p_n$ with $p_{n+1} = p_1$ and $p_{n+2} = p_2$, we detect if it's convex or not by tracing the edge and noting whether it turns only on one direction (always left or always right):
+\begin{align*}
+	(p_{i + 1} - p_i) \times (p_{i + 2} - p_{i + 1}) > 0 & \quad \forall i \in [1,n] \quad \text{or} \\
+	(p_{i + 1} - p_i) \times (p_{i + 2} - p_{i + 1}) < 0 & \quad \forall i \in [1,n]                 
+\end{align*}
+\subsubsection{Backface Culling}
+TODO
+\subsubsection{2D Cone Test}
+Suppose we have a game where we need to check if a target $t$ falls within a certain distance $r$ from the player $p$ and field of view $\theta$ from where the player is facing $\hat{f}$ as shown below:
+\begin{center}
+	\begin{tikzpicture}
+		\draw (0,0) circle[radius=2];
+		\filldraw (0,0) circle[radius=0.05] node[above] {$p$};
+									        	
+		\pgfmathsinandcos\sx\cx{30}
+									        	    
+		\filldraw[color=blue!30] (0,0) -- (2 * \cx, 2 * \sx) arc[start angle=30,end angle=-30, radius=2] -- (2 * \cx, -2 * \sx);
+		\draw[->,thick] (0,0) -- node[below] {$\hat{f}$} (1, 0);
+		\draw[-] (0,0) -- node[left] {$r$} (0, -2);
+		\draw (1,0) arc [start angle=0, end angle=30, radius=1] node[right]{$\theta$};
+									        		
+	\end{tikzpicture}
+\end{center}
+To check if the target is inside the circle, simply check for $|t - p|^2 \leq r^2$, to check whether it's within the field of view:
+\begin{align}
+	\frac{(t - p) \cdot \hat{f}}{|t - p|} = \begin{cases}
+	< \cos\theta    & \text{outside} \\
+	\geq \cos\theta & \text{inside}  \\
+	\end{cases}
+\end{align}
+		
+\subsubsection{Closest Point of Approach}
+TODO
+\subsection{Barycentric Coordinates}
+Given line $\overline{AB}$, we can express any point $P$ on the line as $P = \alpha A + \beta B$ with $\alpha + \beta = 1$. The tuple $(\alpha : \beta)$, is called the barycentric coordinates of $P$ on line $\overline{AB}$. An alternate way of expressing this is $P = \alpha A + (1 - \alpha) B$ reducing the number of coordinates by one.
+		
+Barycentric coordinates could applied on any simplex (a more general term for a "triangle" extended to arbitrary dimensions): a 0D simplex is a point, a 1D simplex is a line segment, a 2D simplex is a triangle, a 3D simplex is a tetrahedron (also a triangular pyramid), etc.
+		
+For a 2D triangle $\triangle ABC$, a point $P$ is expressed as $P = \alpha A + \beta B + \gamma C$ with $\alpha + \beta + \gamma = 1$. To solve for $(\alpha : \beta : \gamma)$, one way is to rewrite it as a matrix equation:
+$$
+P = 
+\begin{bmatrix}
+	A & B & C 
+\end{bmatrix}
+\begin{bmatrix}
+	\alpha \\ \beta \\ \gamma
+\end{bmatrix}
+$$
+then solve for $\begin{bmatrix}\alpha & \beta & \gamma\end{bmatrix}^T$ using least squares. We can however reduce the dimensionality by rewriting the equation as
+\begin{align*}
+	P     & = \alpha A + \beta B + (1 - \alpha - \beta) C \\
+	P     & = \alpha A + \beta B + C - \alpha C - \beta C \\
+	P - C & = \alpha (A - C) + \beta (B - C)              
+\end{align*}
+Let $v_p = P - C$, $v_1 = A - C$ and $v_2 = B - C$, so our equation is now $v_p = \alpha v_1 + \beta v_2$ we then can generate a system of linear equations by computing the dot product of the entire vector equation with $v_1$ and $v_2$:
+$$
+\begin{cases}
+	v_1 \cdot v_p & = \alpha v_1 \cdot v_1 + \beta v_1 \cdot v_2 \\
+	v_2 \cdot v_p & = \alpha v_2 \cdot v_1 + \beta v_2 \cdot v_2 
+\end{cases}
+$$
+which, in matrix form is:
+$$
+\begin{bmatrix}
 	v_1 \cdot v_p \\
-	v_2 \cdot v_p
-	\end{bmatrix}
-	= 
-	\begin{bmatrix}
-	v_1 \cdot v_1 & v_1 \cdot v_2\\
-	v_2 \cdot v_1 & v_2 \cdot v_2
-	\end{bmatrix}
-	\begin{bmatrix}
+	v_2 \cdot v_p 
+\end{bmatrix}
+= 
+\begin{bmatrix}
+	v_1 \cdot v_1 & v_1 \cdot v_2 \\
+	v_2 \cdot v_1 & v_2 \cdot v_2 
+\end{bmatrix}
+\begin{bmatrix}
 	\alpha \\ \beta
-	\end{bmatrix}
-	$$
-	we can solve for $\alpha$ and $\beta$ using Cramer's Rule:
-	\begin{align}
+\end{bmatrix}
+$$
+we can solve for $\alpha$ and $\beta$ using Cramer's Rule:
+\begin{align}
 	\begin{bmatrix}
 	\alpha \\ \beta
 	\end{bmatrix} =
 	\frac{1}{|v_1|^2|v_2|^2 - (v_1 \cdot v_2)^2}
 	\begin{bmatrix}
-	v_2 \cdot v_2 & -v_1 \cdot v_2\\
-	-v_2 \cdot v_1 & v_1 \cdot v_1
+	v_2 \cdot v_2  & -v_1 \cdot v_2 \\
+	-v_2 \cdot v_1 & v_1 \cdot v_1  
 	\end{bmatrix}
 	\begin{bmatrix}
 	v_1 \cdot v_p \\
 	v_2 \cdot v_p
 	\end{bmatrix}
-	\end{align}
-	If the barycentric coordinates of multiple cartesian points over a fixed triangle are being computed, only the rightmost vector need to be changed since it's the only one that is dependent on $P$.
+\end{align}
+If the barycentric coordinates of multiple cartesian points over a fixed triangle are being computed, only the rightmost vector need to be changed since it's the only one that is dependent on $P$.
 	
 	
-	\section{Exercises}
-		\begin{enumerate}
-			\item Closest Point of Approach: Two objects, $A$, $B$, starting at $p_A$, $p_B$, are moving with velocities $v_A$, $v_B$ units per second respectively. At what time $t_0$, after they start moving, will they be closest to each other?
-			\item Stacking Cylinders: See \url{http://acmgnyr.org/year2005/f.pdf}
-			\item Given triangle in 3D with points $A$, $B$, and $C$, and $u = \frac{(B - A)\times (C - A)}{2}$, show that the signed area of triangle when projected to the $xy$, $yz$, and $zx$ planes are $u.z$, $u.x$, and $u.y$ respectively.
-			\item Texturing
-		\end{enumerate}
-	\chapter{Lines and Polygons}
-		\section{2D Line Representations}
-		\section{3D Line Representations}
-		\section{3D Plane Representations}
-		\section{Exercises}
-			\begin{enumerate}
-				\item Projection to Plane: Given $\triangle ABC$, and a plane intersecting the origin with normal $n$, find the 
-			\end{enumerate}
-	\chapter{Bounding Regions}
-	\chapter{Spatial Data Structures}
-	\chapter{Voronoi Regions and Delunay Triangulation}
+\section{Exercises}
+\begin{enumerate}
+	\item Closest Point of Approach: Two objects, $A$, $B$, starting at $p_A$, $p_B$, are moving with velocities $v_A$, $v_B$ units per second respectively. At what time $t_0$, after they start moving, will they be closest to each other?
+	\item Stacking Cylinders: See \url{http://acmgnyr.org/year2005/f.pdf}
+	\item Given triangle in 3D with points $A$, $B$, and $C$, and $u = \frac{(B - A)\times (C - A)}{2}$, show that the signed area of triangle when projected to the $xy$, $yz$, and $zx$ planes are $u.z$, $u.x$, and $u.y$ respectively.
+	\item Texturing
+\end{enumerate}
+\chapter{Lines and Polygons}
+\section{2D Line Representations}
+\section{3D Line Representations}
+\section{3D Plane Representations}
+\section{Exercises}
+\begin{enumerate}
+	\item Projection to Plane: Given $\triangle ABC$, and a plane intersecting the origin with normal $n$, find the 
+\end{enumerate}
+\chapter{Bounding Regions}
+\chapter{Spatial Data Structures}
+\chapter{Voronoi Regions and Delunay Triangulation}
 \end{document}  
