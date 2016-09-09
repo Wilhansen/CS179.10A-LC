@@ -1,40 +1,43 @@
-	%!TEX TS-program = xelatex
-	%!TEX encoding = UTF-8 Unicode
-	
-	\documentclass[12pt]{report}
-	\usepackage{geometry}                % See geometry.pdf to learn the layout options. There are lots.
-	\geometry{a4paper}                   
-	%\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
-	\usepackage{graphicx, url}
-	\usepackage{amssymb, amsmath,url,gensymb}
-	\usepackage[compact]{titlesec}
-	\usepackage{fontspec,xltxtra,xunicode,ifthen}
-	
-	\usepackage{tikz}
-	\usepackage{tkz-euclide,tikz-3dplot}
-	\usepackage{pgfmath}
-	\usetikzlibrary{shapes,calc,decorations,intersections}
-	\usetikzlibrary{angles,quotes,positioning,arrows,fadings,decorations.pathreplacing}
-	\usetkzobj{all}
-	
-	
-	\DeclareMathOperator{\atan}{atan2}
-	\DeclareMathOperator{\acos}{acos}
-	\providecommand{\proj}[2]{\operatorname{proj}_{#1}\left(#2\right)}
-	
-	\newcommand\pgfmathsinandcos[3]{%
-	  \pgfmathsetmacro#1{sin(#3)}%
-	  \pgfmathsetmacro#2{cos(#3)}%
-	}
-	
-	\title{CS179.10A Lecture Notes}
-	\author{Wilhansen Li}
-	
-	\begin{document}
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[12pt]{report}
+\usepackage{geometry}                % See geometry.pdf to learn the layout options. There are lots.
+\geometry{a4paper}                   
+%\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx, url}
+\usepackage{amssymb, amsmath,url,gensymb}
+\usepackage[compact]{titlesec}
+\usepackage{fontspec,xltxtra,xunicode,ifthen}
+\usepackage{todonotes}
+
+\usepackage{tikz}
+\usepackage{tkz-euclide,tikz-3dplot}
+\usepackage{pgfmath}
+\usetikzlibrary{shapes,calc,decorations,intersections}
+\usetikzlibrary{angles,quotes,positioning,arrows,fadings,decorations.pathreplacing}
+\usetkzobj{all}
+
+
+\DeclareMathOperator{\atan}{atan2}
+\DeclareMathOperator{\acos}{acos}
+\DeclareMathOperator{\Area}{Area}
+\providecommand{\proj}[2]{\operatorname{proj}_{#1}\left(#2\right)}
+
+\newcommand\pgfmathsinandcos[3]{%
+  \pgfmathsetmacro#1{sin(#3)}%
+  \pgfmathsetmacro#2{cos(#3)}%
+}
+
+\title{CS179.10A Lecture Notes}
+\author{Wilhansen Li}
+
+\begin{document}
 \maketitle
 \tableofcontents
 	
 \chapter{Vector Math}
+Note: vectors are usually undecorated except when to make the context clear.
 \section{Trigonometry Review}
 \subsection{Radians}
 \begin{align*}
@@ -292,6 +295,12 @@ y
 \end{bmatrix}
 $$
 	
+	The perp operator has the following properties:
+	\begin{align*}
+	(u^\perp)^\perp &= -u \\
+		-(u^\perp)^\perp &= u\\
+	(((u^\perp)^\perp)^\perp)^\perp &= u
+	\end{align*}
 \subsection{Normalization}
 Normalization is the process of making a vector have unit length but still point to the same direction, the normalized vector is denoted by a hat symbol on top of it:
 $$
@@ -351,8 +360,21 @@ Properties of the cross product:
 	(su) \times v         & = s(u \times v) = u \times (sv) \\
 	(u \times v) \cdot u  & = (u \times v) \cdot v = 0      \\
 	(u \times v) \times w & \neq u \times (v \times w)      \\
-	(u + v)\times w       & = (u \times w) + (v \times w)   
+	(u + v)\times w       & = (u \times w) + (v \times w)   \\
+	u \times v &= u^\perp \cdot v \qquad \text{(for 2d)}
 \end{align*}
+One helpful on cross products between vectors $\hat{x}$, $\hat{y}$, and $\hat{z}$ is the circle:
+\begin{center}
+\begin{tikzpicture}
+\node (x) at (0,0) {$\hat{x}$};
+\node (y) at (-0.86,-1.1) {$\hat{y}$};
+\node (z) at (0.86,-1.1) {$\hat{z}$};
+\draw[->] (x) to [bend right=45] (y);
+\draw[->] (y) to [bend right=45] (z);
+\draw[->] (z) to [bend right=45] (x);
+\end{tikzpicture}
+\end{center}
+so $\hat{x} \times \hat{y} = \hat{z}$ and going the other way gives the negative: $\hat{z} \times \hat{y} = -\hat{x}$.
 \subsection{Triple Product}
 \subsubsection{Scalar Triple Product}
 \begin{align}(u \times v) \cdot w = u \cdot (v \times w)\end{align}
@@ -384,6 +406,7 @@ To check if a triangle ${p_0, p_1, p_2}$ is obtuse, acute, or right.
 \end{align}
 		
 \subsubsection{Volume of a Parallelepiped}
+\begin{center}
 \begin{tikzpicture}[tdplot_main_coords,scale=5]
 	\coordinate (U) at (0.1, 0.2, 0.3);
 	\coordinate (V) at (-0.1, 0.4, 0.2);
@@ -406,7 +429,8 @@ To check if a triangle ${p_0, p_1, p_2}$ is obtuse, acute, or right.
 	\draw[-](W)  -- +(V);
 	\draw[-](W)  -- +(U);
 \end{tikzpicture}
-Area = $|u \cdot (v \times w)|$
+\end{center}
+The volume of the paralelepiped is = $|u \cdot (v \times w)|$ while the volume of a tetrahedron spanned by the three vectors is $\frac{|u \cdot (v \times w)|}{3!}$
 \subsection{Projection}
 \begin{center}
 	\begin{tikzpicture}
@@ -459,7 +483,13 @@ If $|\vec{u}| = 1$ then the function simplifies to
 	\proj{\vec{u}}{\vec{v}} = (\vec{u}\cdot\vec{v})\vec{u} 
 \end{align}
 	
-		
+We also have the ``scalar'' projection that just gets the scalar component:
+	\begin{align}
+		\operatorname{proj}_{\vec{u}}'(\vec{v}) = \frac{\vec{u} \cdot \vec{v}}{|\vec{u}|}
+	\end{align}
+	
+	\subsubsection{Extensions}
+		\todo{Extend proj to multiple vectors or multiple bases}
 \subsection{Reflection}
 \begin{center}
 	\begin{tikzpicture}[>=stealth]
@@ -521,8 +551,26 @@ Given a simple polygon, with vertices $p_1, p_2, \dots, p_n$ with $p_{n+1} = p_1
 	(p_{i + 1} - p_i) \times (p_{i + 2} - p_{i + 1}) > 0 & \quad \forall i \in [1,n] \quad \text{or} \\
 	(p_{i + 1} - p_i) \times (p_{i + 2} - p_{i + 1}) < 0 & \quad \forall i \in [1,n]                 
 \end{align*}
+\subsubsection{Distance of a Point from 2D Line}
+Suppose we have a 2D line $L$ that has a unit normal $\hat{n}$ and passes through point $\vec{p_0}$. To determine the distance of a point $\vec{p}$ to line $\vec{L}$, compute $\vec{p} -\vec{p_0}$ and project it to $\hat{n}$.
+\begin{center}
+\begin{tikzpicture}
+\draw[->] (-1,-1) -- (2,2);
+\draw[->,dashed](0,0) -- node[left]{$\hat{n}$} (-0.4,0.4);
+\filldraw (0,0) circle[radius=0.05] node[below] {$\vec{p_0}$};
+\filldraw (0.6, 2) circle [radius=0.05] node[below] {$\vec{p}$};
+\draw[->] (0,0) -- (0.6, 2);
+\draw[dotted](0.6,2) -- +(-1.3, -1.3) -- (0,0);
+\end{tikzpicture}
+\end{center}
+
+The signed distance, $d$ is:
+$$
+d = \operatorname{proj}_{\hat{n}}'(\vec{p} - \vec{p_0}) = (\vec{p} - \vec{p_0}) \cdot \hat{n}
+$$
+where $d > 0$ if $\vec{p}$ is ``in front'' of L, $d < 0$ if $\vec{p}$ is ``behind'' L.
 \subsubsection{Backface Culling}
-TODO
+\todo{backface culling algo}
 \subsubsection{2D Cone Test}
 Suppose we have a game where we need to check if a target $t$ falls within a certain distance $r$ from the player $p$ and field of view $\theta$ from where the player is facing $\hat{f}$ as shown below:
 \begin{center}
@@ -609,23 +657,124 @@ we can solve for $\alpha$ and $\beta$ using Cramer's Rule:
 \end{align}
 If the barycentric coordinates of multiple cartesian points over a fixed triangle are being computed, only the rightmost vector need to be changed since it's the only one that is dependent on $P$.
 	
-	
+	Another way the barycentric coordinates could be computed is by interpreting it geometrically: each element in the coordinate is the quotient of the area of the triangle formed by the point $P$ with two other points over the area of the triangle. That is:
+	\begin{align*}
+	\alpha &= \frac{\Area(\triangle PBC)}{\Area(\triangle ABC)}\\
+	\beta &= \frac{\Area(\triangle PCA)}{\Area(\triangle ABC)}\\
+	\gamma &= \frac{\Area(\triangle PAB)}{\Area(\triangle ABC)}
+	\end{align*}
+
+\subsubsection{Texturing}
+\todo{Use barycentric coordinates to implement opengl/directx texturing}
 \section{Exercises}
 \begin{enumerate}
 	\item Closest Point of Approach: Two objects, $A$, $B$, starting at $p_A$, $p_B$, are moving with velocities $v_A$, $v_B$ units per second respectively. At what time $t_0$, after they start moving, will they be closest to each other?
 	\item Stacking Cylinders: See \url{http://acmgnyr.org/year2005/f.pdf}
 	\item Given triangle in 3D with points $A$, $B$, and $C$, and $u = \frac{(B - A)\times (C - A)}{2}$, show that the signed area of triangle when projected to the $xy$, $yz$, and $zx$ planes are $u.z$, $u.x$, and $u.y$ respectively.
-	\item Texturing
 \end{enumerate}
 \chapter{Lines and Polygons}
 \section{2D Line Representations}
+	\subsection{Explicit}
+	Taught during high school, we represent the line as the equation: $$
+	y = mx + b
+	$$
+	where $m = \frac{\Delta y}{\Delta x} = \tan \theta$ is the slope of the line, and $b$ is the y-intercept.
+	
+	in calculus classes, it's presented as a function of a one-degree polynomial:
+	$$
+	f(x) = a_1x + a_0
+	$$
+	other forms include the slope-intercept form:
+	$$
+	(y - y_0) = (x - x_0)\frac{\Delta y}{\Delta x}
+	$$
+	All three representations are equivalent. They need two numbers, $m$ and $b$ to represent the line but one big problem with this representations is that in cannot represent vertical lines.
+		\subsubsection{Intersection}
+			Given two lines in explicit form, $f_0(x) = m_0x + b_0$ and $f_1(x) = m_1x + b_1$, the intersection between the two lines can easily be computed by equating the two and solving for x: 
+			\begin{align*}
+			m_0x + b_0 &= m_1x + b_1 \\
+			m_0x - m_1x &= b_1 - b_0\\
+			(m_0 - m_1)x &= b_1 - b_0\\
+			x &= \frac{b_1 - b_0}{m_0 - m_1}
+			\end{align*}
+	\subsection{Implicit}
+	$$
+	ax + by + c = 0
+	$$
+		\subsubsection{Intersection}
+		Given two lines in implicit form: $a_0x + b_0y + c_0 = 0$ and $a_1x + b_1y + c_1 = 0$, the intersection point in homogenous form is $\langle x, y, w \rangle = \langle a_0, b_0, c_0 \rangle \times \langle a_1, b_1, c_1 \rangle$.
+		If $w = 0$, then the two lines are either coincident or parallel, if $w \neq 0$, then the point of intersection is an $\langle \frac{x}{w}, \frac{y}{w} \rangle$.
+		\subsubsection{Point Distance}
+		The distance of a point $\langle x_0, y_0\rangle$ to a line $ax + by + c = 0$ is simply:
+		$$
+		\frac{ax_0 + by_0 + c}{\sqrt{a^2 + b^2}}
+		$$
+	\subsection{2-Point}
+	$$
+	\{p_0, p_1\}
+	$$
+		\subsubsection{Intersection}
+		\subsubsection{Point Distance}
+	\subsection{Parametric}
+	$$
+	\vec{L}(t) = (1- t) \vec{p_0} + t\vec{p_1}
+	$$
+	
+	$$
+	\vec{L}(t) = \vec{p_0} + t\vec{v}
+	$$
+		\subsubsection{Intersection}
+		
+		\subsubsection{Point Distance}
 \section{3D Line Representations}
+	\subsection{Explicit}
+	$$
+	\frac{x - x_0}{\Delta x} = \frac{y - y_0}{\Delta y} = \frac{z - z_0}{\Delta z}
+	$$
+	\subsection{2-Point}
+	$$
+		\{p_0, p_1\}
+	$$
+	The situation is similar, if not exactly the same as the 2D case.
+	\subsection{Parametric}
+	$$
+	\vec{L}(t) = \vec{p_0} + t\vec{v}
+	$$
+	
+	\subsection{Plücker Coordinates}
+	$$
+		(p_1 - p_0: p_0 \times p_1)
+	$$
 \section{3D Plane Representations}
+	\subsection{3-point}
+		$$
+		\{p_0, p_1, p_2\}
+	$$
+	\subsection{Implicit}
+		$$
+		ax + by + cz + d = 0
+	$$
+	\subsection{Parametric}
+	$$
+	\vec{f}(s, t) = \vec{p_0} + s\vec{v_0} + t\vec{v_1}
+	$$
+	\subsection{Functional}
+		$$
+		z = f(x, y) = ax + by + c
+		$$
 \section{Exercises}
 \begin{enumerate}
-	\item Projection to Plane: Given $\triangle ABC$, and a plane intersecting the origin with normal $n$, find the 
-\end{enumerate}
+	\item Given a 2D implicit line, modify it such that it gets shifted $d$ units away from the origin in the direction of the line's normal.
+	\item Given a 2D implicit line, modify it such that it is rotated by $\theta$ about the origin.
+	\item Given a 2D parametric line, modify it such that it gets shifted $d$ units away from the origin in the direction of the line's normal.
+	\item Given a 2D parametric line $\vec{f}(t)$, modify it such that it is rotated by $\theta$ about its starting point $\vec{f}(0)$.
+	\item Given a 2D parametric line, modify it such that it is rotated by $\theta$ about the origin.
+	\item Given a 2D implicit line, find the point on 
+	\item Find the conversion formulas for the different 2D line representations.
+	\item Projection to Plane: Find the projection of $\triangle ABC$ to a plane intersecting the origin with normal $\vec{n}$.
+	\item Prove that barycentric coordinates are invariant under projection to any plane that's not orthogonal to the triangle.
+\end{enumerate}	
 \chapter{Bounding Regions}
 \chapter{Spatial Data Structures}
 \chapter{Voronoi Regions and Delunay Triangulation}
-\end{document}  
+\end{document}
